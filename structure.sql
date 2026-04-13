@@ -114,10 +114,24 @@ create table if not exists composteiras (
   index idx_produtor (produtor_id),
   constraint chk_tamanho check (tamanho in ('gg','g','m','p','pp'))
 );
--- para ficar mais fácil a adaptação da api web, é melhor retirar a tabela sensores, já que essa modelagem só faz sentido se tiver mais de um sensor, o que, na regra de negócio atual, não será necessário. dessa forma, as composteiras fariam o trabalho de sensores.
+
+create table if not exists sensores(
+ id int auto_increment,
+ composteira_id int not null,
+ modelo varchar(45),
+ 
+ criado_em datetime not null default now(),
+ atualizado_em datetime,
+ desativado_em datetime,
+
+ primary key(id),
+ constraint fk_sensor_composteira foreign key (composteira_id) references composteiras(id),
+ index idx_composteira (composteira_id)
+);
+
 create table if not exists deteccoes (
   id int auto_increment,
-  composteira_id int,
+  sensor_id int,
   temperatura decimal(5,2),
   umidade decimal(5,2),
   
@@ -126,8 +140,8 @@ create table if not exists deteccoes (
   desativado_em datetime,
 
   primary key (id),
-  constraint fk_deteccao_composteira foreign key (composteira_id) references composteiras (id),
-  index idx_composteira (composteira_id)
+  constraint fk_deteccao_sensor foreign key (sensor_id) references sensores (id),
+  index idx_sensor (sensor_id)
 );
 
 create table if not exists alertas (
