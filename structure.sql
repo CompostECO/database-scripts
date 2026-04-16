@@ -71,14 +71,14 @@ create table if not exists usuarios (
 create table if not exists codigos_ativacao (
   id int auto_increment,
   codigo char(6) not null unique,
-  produdor_id int not null,
+  produtor_id int not null,
 
   criado_em datetime not null default now(),
   atualizado_em datetime,
   desativado_em datetime,
 
   primary key (id),
-  constraint fk_codigo_produtor foreign key (produdor_id) references produtores(id),
+  constraint fk_codigo_produtor foreign key (produtor_id) references produtores(id),
   index idx_produtor (produtor_id)
 );
 
@@ -101,9 +101,10 @@ create table if not exists telefones (
 create table if not exists composteiras (
   id int auto_increment,
   produtor_id int not null,
-  modelo varchar(45) not null,
+  modelo varchar(45),
+  descricao text,
   capacidade_kg decimal(6,2) not null,
-  tamanho char(2),
+  modelo_sensor varchar(45) not null,
   
   criado_em datetime not null default now(),
   atualizado_em datetime,
@@ -111,27 +112,12 @@ create table if not exists composteiras (
   
   primary key (id),
   constraint fk_composteira_produtor foreign key (produtor_id) references produtores(id),
-  index idx_produtor (produtor_id),
-  constraint chk_tamanho check (tamanho in ('gg','g','m','p','pp'))
-);
-
-create table if not exists sensores(
- id int auto_increment,
- composteira_id int not null,
- modelo varchar(45),
- 
- criado_em datetime not null default now(),
- atualizado_em datetime,
- desativado_em datetime,
-
- primary key(id),
- constraint fk_sensor_composteira foreign key (composteira_id) references composteiras(id),
- index idx_composteira (composteira_id)
+  index idx_produtor (produtor_id)
 );
 
 create table if not exists deteccoes (
   id int auto_increment,
-  sensor_id int,
+  composteira_id int,
   temperatura decimal(5,2),
   umidade decimal(5,2),
   
@@ -140,8 +126,8 @@ create table if not exists deteccoes (
   desativado_em datetime,
 
   primary key (id),
-  constraint fk_deteccao_sensor foreign key (sensor_id) references sensores (id),
-  index idx_sensor (sensor_id)
+  constraint fk_deteccao_sensor foreign key (composteira_id) references composteiras (id),
+  index idx_composteira (composteira_id)
 );
 
 create table if not exists alertas (
