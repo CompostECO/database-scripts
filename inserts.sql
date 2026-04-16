@@ -1,5 +1,3 @@
-use composteco;
-
 insert into estados (uf, nome) values
 ('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', 'Amapá'), ('AM', 'Amazonas'),
 ('BA', 'Bahia'), ('CE', 'Ceará'), ('DF', 'Distrito Federal'), ('ES', 'Espírito Santo'),
@@ -17,8 +15,6 @@ values
 ('06010-200', 77, null, 'rua antonio agú', 'centro', 'osasco', 'SP'),
 ('14020-500', 300, 'bloco b', 'rua sao jose', 'jardim paulista', 'ribeirao preto', 'SP');
 
--- Produtores agora são inseridos ANTES dos usuários (relação invertida)
--- CPF limpo (char(11) sem pontuação), campos PJ e filiação ficam nulos
 insert into produtores (cpf, nome, endereco_id)
 values
 ('12345678910', 'joao silva', 1),
@@ -27,45 +23,62 @@ values
 ('32165498722', 'ana costa', 4),
 ('15975348699', 'lucas pereira', 5);
 
--- Usuários agora referenciam produtor_id e já possuem o campo email (tabela emails foi removida)
 insert into usuarios (nome, senha, email, nivel_acesso, produtor_id)
 values
-('joao.silva', 'hash123', 'joao.silva@gmail.com', 2, 1),
+('joao.silva',     'hash123', 'joao.silva@gmail.com',     2, 1),
 ('maria.oliveira', 'hash123', 'maria.oliveira@gmail.com', 2, 2),
-('carlos.souza', 'hash123', 'carlos.souza@gmail.com', 2, 3),
-('ana.costa', 'hash123', 'ana.costa@gmail.com', 2, 4),
-('lucas.pereira', 'hash123', 'lucas.pereira@gmail.com', 2, 5);
+('carlos.souza',   'hash123', 'carlos.souza@gmail.com',   2, 3),
+('ana.costa',      'hash123', 'ana.costa@gmail.com',      2, 4),
+('lucas.pereira',  'hash123', 'lucas.pereira@gmail.com',  2, 5);
 
 insert into telefones (produtor_id, telefone, tipo)
 values
 (1, '11987654321', 'celular'),
-(1, '1134567890', 'residencial'),
+(1, '1134567890',  'residencial'),
 (2, '11976543210', 'celular'),
-(2, '1145678901', 'comercial'),
+(2, '1145678901',  'comercial'),
 (3, '11965432109', 'celular'),
-(3, '1156789012', 'residencial'),
+(3, '1156789012',  'residencial'),
 (4, '11954321098', 'celular'),
-(4, '1167890123', 'comercial'),
+(4, '1167890123',  'comercial'),
 (5, '11943210987', 'celular'),
-(5, '1178901234', 'residencial');
+(5, '1178901234',  'residencial');
 
-insert into composteiras (produtor_id, modelo, capacidade_kg, tamanho)
+-- Composteiras atualizadas (sem tamanho, com descricao e modelo_sensor)
+insert into composteiras (produtor_id, modelo, descricao, capacidade_kg, modelo_sensor)
 values
-(1,'eco100',100,'g'),(1,'eco50',50,'m'),(1,'bio30',30,'p'),(1,'max200',200,'gg'),(1,'mini20',20,'pp'),
-(2,'eco100',100,'g'),(2,'eco50',50,'m'),(2,'bio30',30,'p'),(2,'max200',200,'gg'),(2,'mini20',20,'pp'),
-(3,'eco100',100,'g'),(3,'eco50',50,'m'),(3,'bio30',30,'p'),(3,'max200',200,'gg'),(3,'mini20',20,'pp'),
-(4,'eco100',100,'g'),(4,'eco50',50,'m'),(4,'bio30',30,'p'),(4,'max200',200,'gg'),(4,'mini20',20,'pp'),
-(5,'eco100',100,'g'),(5,'eco50',50,'m'),(5,'bio30',30,'p'),(5,'max200',200,'gg'),(5,'mini20',20,'pp');
+(1, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
+(1, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
+(1, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
+(1, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
+(1, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
 
-insert into sensores (composteira_id, modelo)
-values
-(1,'DHT11'),(2,'DHT11'),(3,'DHT11'),(4,'DHT11'),(5,'DHT11'),
-(6,'DHT11'),(7,'DHT11'),(8,'DHT11'),(9,'DHT11'),(10,'DHT11'),
-(11,'DHT11'),(12,'DHT11'),(13,'DHT11'),(14,'DHT11'),(15,'DHT11'),
-(16,'DHT11'),(17,'DHT11'),(18,'DHT11'),(19,'DHT11'),(20,'DHT11'),
-(21,'DHT11'),(22,'DHT11'),(23,'DHT11'),(24,'DHT11'),(25,'DHT11');
+(2, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
+(2, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
+(2, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
+(2, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
+(2, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
 
-insert into deteccoes (sensor_id, temperatura, umidade)
+(3, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
+(3, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
+(3, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
+(3, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
+(3, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
+
+(4, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
+(4, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
+(4, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
+(4, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
+(4, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
+
+(5, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
+(5, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
+(5, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
+(5, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
+(5, 'mini20', 'Mini composteira para teste', 20, 'DHT11');
+
+-- Detecções agora ligam direto na composteira_id
+insert into deteccoes (composteira_id, temperatura, umidade)
 values
 (1,55,60),(2,48,65),(3,62,58),(4,70,72),(5,45,50),
 (6,52,66),(7,49,61),(8,60,59),(9,68,75),(10,43,48),
