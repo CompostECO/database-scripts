@@ -96,15 +96,15 @@ values
 (16,53,68),(17,47,61),(18,60,63),(19,68,74),(20,43,47),
 (21,58,62),(22,54,65),(23,64,59),(24,72,78),(25,48,54);
 
-insert into alertas (deteccao_id, usuario_id, tipo, prioridade)
+insert into alertas (deteccao_id, tipo, prioridade)
 values
-(1,1,'alta temperatura', 2),
-(2,2,'alta umidade', 1),
-(3,3,'alta umidade e temperatura', 3),
-(4,4,'baixa temperatura', 1),
-(5,5,'baixa umidade', 3),
-(6,1,'baixa umidade e temperatura', 3),
-(7,2,'alta temperatura', 2),
-(8,3,'alta umidade', 1),
-(9,4,'alta umidade e temperatura', 3),
-(10,5,'baixa temperatura', 2);
+(1,1,'alta temperatura'),
+(2,2,'alta umidade'),
+(3,3,'alta umidade e temperatura'),
+(4,4,'baixa temperatura'),
+(5,5,'baixa umidade'),
+(6,1,'baixa umidade e temperatura'),
+(7,2,'alta temperatura'),
+(8,3,'alta umidade'),
+(9,4,'alta umidade e temperatura'),
+(10,5,'baixa temperatura');

@@ -133,16 +133,13 @@ create table if not exists deteccoes (
 create table if not exists alertas (
   id int auto_increment,
   deteccao_id int not null,
-  usuario_id int not null,
   tipo varchar(60) not null,
   prioridade tinyint, -- 0 = sem risco aparente, 1 = risco moderado, 2 = risco alto, 3 = urgênte
   enviado_em datetime not null default now(),
   
   primary key (id),
   constraint fk_alerta_deteccao foreign key (deteccao_id) references deteccoes(id),
-  constraint fk_alerta_usuario foreign key (usuario_id) references usuarios(id),
   index idx_deteccao (deteccao_id),
-  index idx_usuario (usuario_id),
   constraint chk_tipo_alerta check (tipo in (
     'baixa umidade','baixa temperatura','alta umidade',
     'alta temperatura','baixa umidade e temperatura',
