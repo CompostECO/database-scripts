@@ -13,23 +13,47 @@ values
 ('13050-321', 45, 'casa fundos', 'avenida brasil', 'centro', 'campinas', 'SP'),
 ('11025-000', 890, 'apto 12', 'rua da praia', 'gonzaga', 'santos', 'SP'),
 ('06010-200', 77, null, 'rua antonio agú', 'centro', 'osasco', 'SP'),
-('14020-500', 300, 'bloco b', 'rua sao jose', 'jardim paulista', 'ribeirao preto', 'SP');
+('14020-500', 300, 'bloco b', 'rua sao jose', 'jardim paulista', 'ribeirao preto', 'SP'),
+('19015-100', 156, null, 'rua das acácias', 'centro', 'presidente prudente', 'SP'),
+('17015-130', 234, 'apto 5', 'avenida paulista', 'vila mariana', 'sao paulo', 'SP'),
+('15800-000', 412, 'casa', 'rua das industrias', 'morumbi', 'sorocaba', 'SP'),
+('16010-260', 89, 'bloco a', 'rua piratininga', 'centro', 'araçatuba', 'SP'),
+('18100-000', 567, null, 'rua comercial', 'vila nova', 'tatuí', 'SP'),
+('20040020', 1000, 'sala 500', 'avenida rio branco', 'centro', 'rio de janeiro', 'RJ');
+
+insert into produtores (cnpj, razao_social, nome_fantasia, filiacao, endereco_id)
+values
+('12312312312332', 'CompostEco', 'CompostEco', null, 1),
+('12345678901234', 'Agro Verde Ltda', 'Verde Compostagem', null, 2),
+('98765432100123', 'Eco Produções SA', 'Eco Comp', null, 3),
+('45678901234567', 'Sustenta Agro Ltda', 'Sustenta', null, 4),
+('32165498701234', 'Bio Resíduos Ltda', 'Bio Eco', null, 5),
+('15975398701234', 'Composto Orgânico SA', 'Composto Plus', 2, 6);
 
 insert into produtores (cpf, nome, endereco_id)
 values
-('12345678910', 'joao silva', 1),
-('98765432100', 'maria oliveira', 2),
-('45678912355', 'carlos souza', 3),
-('32165498722', 'ana costa', 4),
-('15975348699', 'lucas pereira', 5);
+('12345678910', 'João Silva', 7),
+('98765432100', 'Maria Oliveira', 8),
+('45678912355', 'Carlos Souza', 9),
+('32165498722', 'Ana Costa', 10),
+('15975348699', 'Lucas Pereira', 11);
 
 insert into usuarios (nome, senha, email, nivel_acesso, produtor_id)
 values
-('joao.silva',     'hash123', 'joao.silva@gmail.com',     2, 1),
-('maria.oliveira', 'hash123', 'maria.oliveira@gmail.com', 2, 2),
-('carlos.souza',   'hash123', 'carlos.souza@gmail.com',   2, 3),
-('ana.costa',      'hash123', 'ana.costa@gmail.com',      2, 4),
-('lucas.pereira',  'hash123', 'lucas.pereira@gmail.com',  2, 5);
+('Admin', 'admin123', 'admin@composteco.com', 3, 1),
+('Roberto Mendes', 'senha123', 'roberto.mendes@agroverde.com', 2, 2),
+('Fernanda Lima', 'senha123', 'fernanda.lima@agroverde.com', 1, 2),
+('Patricia Gomes', 'senha123', 'patricia.gomes@ecoproducoes.com', 2, 3),
+('Diego Martins', 'senha123', 'diego.martins@sustentaagro.com', 2, 4),
+('Camila Rocha', 'senha123', 'camila.rocha@sustentaagro.com', 1, 4),
+('Gustavo Alves', 'senha123', 'gustavo.alves@bioresíduos.com', 2, 5),
+('Mariana Santos', 'senha123', 'mariana.santos@bioresíduos.com', 1, 5),
+('Felipe Ribeiro', 'senha123', 'felipe.ribeiro@compostoplus.com', 2, 6),
+('João Silva',     'senha123', 'joao.silva@gmail.com',     2, 7),
+('Maria Oliveira', 'senha123', 'maria.oliveira@gmail.com', 2, 8),
+('Carlos Souza',   'senha123', 'carlos.souza@gmail.com',   2, 9),
+('Ana Costa',      'senha123', 'ana.costa@gmail.com',      2, 10),
+('Lucas Pereira',  'senha123', 'lucas.pereira@gmail.com',  2, 11);
 
 insert into telefones (produtor_id, telefone, tipo)
 values
@@ -42,7 +66,19 @@ values
 (4, '11954321098', 'celular'),
 (4, '1167890123',  'comercial'),
 (5, '11943210987', 'celular'),
-(5, '1178901234',  'residencial');
+(5, '1178901234',  'residencial'),
+(6, '11932104567', 'celular'),
+(6, '1132104567',  'comercial'),
+(7, '11999887766', 'celular'),
+(7, '1133445566',  'residencial'),
+(8, '11988776655', 'celular'),
+(8, '1133556677',  'residencial'),
+(9, '11977665544', 'celular'),
+(9, '1133667788',  'residencial'),
+(10, '11966554433', 'celular'),
+(10, '1133778899',  'residencial'),
+(11, '11955443322', 'celular'),
+(11, '1133889900',  'residencial');
 
 -- Composteiras atualizadas (sem tamanho, com descricao e modelo_sensor)
 insert into composteiras (produtor_id, modelo, descricao, capacidade_kg, modelo_sensor)
@@ -78,33 +114,58 @@ values
 (5, 'mini20', 'Mini composteira para teste', 20, 'DHT11');
 
 -- Detecções agora ligam direto na composteira_id
-insert into deteccoes (composteira_id, temperatura, umidade)
-values
-(1,55,60),(2,48,65),(3,62,58),(4,70,72),(5,45,50),
-(6,52,66),(7,49,61),(8,60,59),(9,68,75),(10,43,48),
-(11,57,63),(12,50,64),(13,61,57),(14,69,74),(15,44,49),
-(16,53,67),(17,47,62),(18,59,60),(19,67,73),(20,42,47),
-(21,56,61),(22,51,65),(23,63,58),(24,71,76),(25,46,52),
-(1,54,62),(2,47,66),(3,64,57),(4,72,78),(5,46,51),
-(6,51,68),(7,50,60),(8,58,61),(9,66,72),(10,41,46),
-(11,58,64),(12,52,63),(13,62,59),(14,70,77),(15,45,50),
-(16,54,69),(17,48,63),(18,60,62),(19,68,74),(20,43,48),
-(21,57,60),(22,53,66),(23,65,58),(24,73,79),(25,47,53),
-(1,55,61),(2,49,67),(3,63,56),(4,71,75),(5,44,52),
-(6,52,67),(7,48,62),(8,61,60),(9,67,73),(10,42,49),
-(11,56,65),(12,51,64),(13,62,58),(14,69,76),(15,46,51),
-(16,53,68),(17,47,61),(18,60,63),(19,68,74),(20,43,47),
-(21,58,62),(22,54,65),(23,64,59),(24,72,78),(25,48,54);
+insert into deteccoes (composteira_id, temperatura, umidade) values
+(1,22,75),(2,23,78),(3,21,80),(4,24,72),(5,20,70),
+(6,22,82),(7,23,76),(8,21,79),(9,24,74),(10,22,73),
+(11,23,77),(12,22,76),(13,24,78),(14,21,75),(15,23,74),
+(16,22,79),(17,23,80),(18,21,78),(19,24,76),(20,22,75),
 
-insert into alertas (deteccao_id, tipo, prioridade)
-values
-(1,1,'alta temperatura'),
-(2,2,'alta umidade'),
-(3,3,'alta umidade e temperatura'),
-(4,4,'baixa temperatura'),
-(5,5,'baixa umidade'),
-(6,1,'baixa umidade e temperatura'),
-(7,2,'alta temperatura'),
-(8,3,'alta umidade'),
-(9,4,'alta umidade e temperatura'),
-(10,5,'baixa temperatura');
+(1,26,78),(2,19,74),(3,23,68),(4,24,87),(5,18,69),
+(6,27,82),(7,19,71),(8,22,67),(9,25,86),(10,18,68),
+(11,26,84),(12,19,73),(13,23,69),(14,24,88),(15,18,70),
+(16,27,83),(17,19,72),(18,22,66),(19,25,85),(20,18,67),
+
+(1,30,65),(2,15,90),(3,28,60),(4,32,88),(5,14,50),
+(6,31,64),(7,16,89),(8,29,61),(9,33,87),(10,15,52),
+(11,30,66),(12,15,91),(13,28,62),(14,32,86),(15,14,53),
+(16,31,63),(17,16,88),(18,29,60),(19,33,89),(20,15,51),
+
+(1,23,76),(2,22,79),(3,21,77),(4,25,73),(5,20,72),
+(6,24,83),(7,22,75),(8,21,78),(9,25,74),(10,23,71),
+(11,24,77),(12,22,76),(13,25,78),(14,21,74),(15,23,73),
+(16,24,79),(17,22,80),(18,21,77),(19,25,75),(20,23,74),
+
+(1,22,74),(2,27,82),(3,19,69),(4,31,85),(5,21,71),
+(6,23,76),(7,28,88),(8,18,65),(9,30,84),(10,22,73),
+(11,24,77),(12,29,90),(13,17,64),(14,32,86),(15,23,72),
+(16,22,75),(17,27,83),(18,19,68),(19,31,87),(20,21,70),
+
+(1,23,75),(2,24,78),(3,22,79),(4,25,72),(5,21,71),
+(6,23,81),(7,24,77),(8,22,78),(9,25,74),(10,23,73),
+(11,24,76),(12,23,75),(13,25,77),(14,22,74),(15,24,73),
+(16,23,78),(17,24,79),(18,22,76),(19,25,75),(20,23,74);
+
+insert into alertas (deteccao_id, prioridade, tipo) values
+(21,0,'alta temperatura'),
+(22,0,'baixa temperatura'),
+(23,0,'baixa umidade'),
+(24,0,'alta umidade'),
+
+(25,1,'baixa umidade'),
+(26,1,'alta temperatura'),
+(27,1,'baixa temperatura'),
+(28,1,'alta umidade'),
+
+(41,2,'alta temperatura'),
+(42,2,'baixa temperatura'),
+(43,2,'baixa umidade'),
+(44,2,'alta umidade'),
+(45,2,'baixa umidade e temperatura'),
+(46,2,'alta umidade e temperatura'),
+
+(61,3,'alta temperatura'),
+(62,3,'baixa temperatura'),
+(63,3,'baixa umidade'),
+(64,3,'alta umidade'),
+(65,3,'baixa umidade e temperatura'),
+(66,3,'alta umidade e temperatura');

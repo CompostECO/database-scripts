@@ -56,7 +56,7 @@ create table if not exists usuarios (
   senha varchar(255) not null,
   email varchar(255) not null unique,
 
-  nivel_acesso tinyint not null default 2, -- 1 = admin, 2 = produtor, 3 = observador
+  nivel_acesso tinyint not null default 2, -- 1 = admin, 2 = admin-produtor, 3 = observador
   produtor_id int not null,
 
   criado_em datetime not null default now(),
