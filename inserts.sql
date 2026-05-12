@@ -1,27 +1,51 @@
-insert into estados (uf, nome) values
-('AC', 'Acre'), ('AL', 'Alagoas'), ('AP', 'Amapá'), ('AM', 'Amazonas'),
-('BA', 'Bahia'), ('CE', 'Ceará'), ('DF', 'Distrito Federal'), ('ES', 'Espírito Santo'),
-('GO', 'Goiás'), ('MA', 'Maranhão'), ('MT', 'Mato Grosso'), ('MS', 'Mato Grosso do Sul'),
-('MG', 'Minas Gerais'), ('PA', 'Pará'), ('PB', 'Paraíba'), ('PR', 'Paraná'),
-('PE', 'Pernambuco'), ('PI', 'Piauí'), ('RJ', 'Rio de Janeiro'), ('RN', 'Rio Grande do Norte'),
-('RS', 'Rio Grande do Sul'), ('RO', 'Rondônia'), ('RR', 'Roraima'), ('SC', 'Santa Catarina'),
-('SP', 'São Paulo'), ('SE', 'Sergipe'), ('TO', 'Tocantins');
+insert into estado (uf, nome) values
+('AC', 'Acre'),
+('AL', 'Alagoas'),
+('AP', 'Amapá'),
+('AM', 'Amazonas'),
+('BA', 'Bahia'),
+('CE', 'Ceará'),
+('DF', 'Distrito Federal'),
+('ES', 'Espírito Santo'),
+('GO', 'Goiás'),
+('MA', 'Maranhão'),
+('MT', 'Mato Grosso'),
+('MS', 'Mato Grosso do Sul'),
+('MG', 'Minas Gerais'),
+('PA', 'Pará'),
+('PB', 'Paraíba'),
+('PR', 'Paraná'),
+('PE', 'Pernambuco'),
+('PI', 'Piauí'),
+('RJ', 'Rio de Janeiro'),
+('RN', 'Rio Grande do Norte'),
+('RS', 'Rio Grande do Sul'),
+('RO', 'Rondônia'),
+('RR', 'Roraima'),
+('SC', 'Santa Catarina'),
+('SP', 'São Paulo'),
+('SE', 'Sergipe'),
+('TO', 'Tocantins');
 
-insert into enderecos (cep, numero, complemento, logradouro, bairro, cidade, estado)
+
+insert into endereco
+(cep, numero, complemento, logradouro, bairro, cidade, estado)
 values
-('05145-120', 123, null, 'rua das flores', 'vila perus', 'sao paulo', 'SP'),
-('13050-321', 45, 'casa fundos', 'avenida brasil', 'centro', 'campinas', 'SP'),
-('11025-000', 890, 'apto 12', 'rua da praia', 'gonzaga', 'santos', 'SP'),
-('06010-200', 77, null, 'rua antonio agú', 'centro', 'osasco', 'SP'),
-('14020-500', 300, 'bloco b', 'rua sao jose', 'jardim paulista', 'ribeirao preto', 'SP'),
-('19015-100', 156, null, 'rua das acácias', 'centro', 'presidente prudente', 'SP'),
-('17015-130', 234, 'apto 5', 'avenida paulista', 'vila mariana', 'sao paulo', 'SP'),
-('15800-000', 412, 'casa', 'rua das industrias', 'morumbi', 'sorocaba', 'SP'),
-('16010-260', 89, 'bloco a', 'rua piratininga', 'centro', 'araçatuba', 'SP'),
-('18100-000', 567, null, 'rua comercial', 'vila nova', 'tatuí', 'SP'),
-('20040020', 1000, 'sala 500', 'avenida rio branco', 'centro', 'rio de janeiro', 'RJ');
+('05145-120', 123, null, 'Rua das Flores', 'Vila Perus', 'São Paulo', 'SP'),
+('13050-321', 45, 'Casa fundos', 'Avenida Brasil', 'Centro', 'Campinas', 'SP'),
+('11025-000', 890, 'Apto 12', 'Rua da Praia', 'Gonzaga', 'Santos', 'SP'),
+('06010-200', 77, null, 'Rua Antônio Agú', 'Centro', 'Osasco', 'SP'),
+('14020-500', 300, 'Bloco B', 'Rua São José', 'Jardim Paulista', 'Ribeirão Preto', 'SP'),
+('19015-100', 156, null, 'Rua das Acácias', 'Centro', 'Presidente Prudente', 'SP'),
+('17015-130', 234, 'Apto 5', 'Avenida Paulista', 'Vila Mariana', 'São Paulo', 'SP'),
+('15800-000', 412, 'Casa', 'Rua das Indústrias', 'Morumbi', 'Sorocaba', 'SP'),
+('16010-260', 89, 'Bloco A', 'Rua Piratininga', 'Centro', 'Araçatuba', 'SP'),
+('18100-000', 567, null, 'Rua Comercial', 'Vila Nova', 'Tatuí', 'SP'),
+('20040-020', 1000, 'Sala 500', 'Avenida Rio Branco', 'Centro', 'Rio de Janeiro', 'RJ');
 
-insert into produtores (cnpj, razao_social, nome_fantasia, filiacao, endereco_id)
+
+insert into produtor
+(cnpj, razao_social, nome_fantasia, filiacao, endereco_id)
 values
 ('12312312312332', 'CompostEco', 'CompostEco', null, 1),
 ('12345678901234', 'Agro Verde Ltda', 'Verde Compostagem', null, 2),
@@ -30,7 +54,9 @@ values
 ('32165498701234', 'Bio Resíduos Ltda', 'Bio Eco', null, 5),
 ('15975398701234', 'Composto Orgânico SA', 'Composto Plus', 2, 6);
 
-insert into produtores (cpf, nome, endereco_id)
+
+insert into produtor
+(cpf, nome, endereco_id)
 values
 ('12345678910', 'João Silva', 7),
 ('98765432100', 'Maria Oliveira', 8),
@@ -38,83 +64,119 @@ values
 ('32165498722', 'Ana Costa', 10),
 ('15975348699', 'Lucas Pereira', 11);
 
-insert into usuarios (nome, senha, email, nivel_acesso, produtor_id)
+
+insert into usuario
+(nome, senha, email, nivel_acesso, produtor_id)
 values
-('Admin', 'admin123', 'admin@composteco.com', 3, 1),
+('Admin', 'admin123', 'admin@composteco.com', 1, 1),
 ('Roberto Mendes', 'senha123', 'roberto.mendes@agroverde.com', 2, 2),
-('Fernanda Lima', 'senha123', 'fernanda.lima@agroverde.com', 1, 2),
+('Fernanda Lima', 'senha123', 'fernanda.lima@agroverde.com', 3, 2),
 ('Patricia Gomes', 'senha123', 'patricia.gomes@ecoproducoes.com', 2, 3),
 ('Diego Martins', 'senha123', 'diego.martins@sustentaagro.com', 2, 4),
-('Camila Rocha', 'senha123', 'camila.rocha@sustentaagro.com', 1, 4),
-('Gustavo Alves', 'senha123', 'gustavo.alves@bioresíduos.com', 2, 5),
-('Mariana Santos', 'senha123', 'mariana.santos@bioresíduos.com', 1, 5),
+('Camila Rocha', 'senha123', 'camila.rocha@sustentaagro.com', 3, 4),
+('Gustavo Alves', 'senha123', 'gustavo.alves@bioresiduos.com', 2, 5),
+('Mariana Santos', 'senha123', 'mariana.santos@bioresiduos.com', 3, 5),
 ('Felipe Ribeiro', 'senha123', 'felipe.ribeiro@compostoplus.com', 2, 6),
-('João Silva',     'senha123', 'joao.silva@gmail.com',     2, 7),
+('João Silva', 'senha123', 'joao.silva@gmail.com', 2, 7),
 ('Maria Oliveira', 'senha123', 'maria.oliveira@gmail.com', 2, 8),
-('Carlos Souza',   'senha123', 'carlos.souza@gmail.com',   2, 9),
-('Ana Costa',      'senha123', 'ana.costa@gmail.com',      2, 10),
-('Lucas Pereira',  'senha123', 'lucas.pereira@gmail.com',  2, 11);
+('Carlos Souza', 'senha123', 'carlos.souza@gmail.com', 2, 9),
+('Ana Costa', 'senha123', 'ana.costa@gmail.com', 2, 10),
+('Lucas Pereira', 'senha123', 'lucas.pereira@gmail.com', 2, 11);
 
-insert into telefones (produtor_id, telefone, tipo)
+
+insert into telefone
+(produtor_id, telefone, tipo)
 values
 (1, '11987654321', 'celular'),
-(1, '1134567890',  'residencial'),
+(1, '1134567890', 'residencial'),
 (2, '11976543210', 'celular'),
-(2, '1145678901',  'comercial'),
+(2, '1145678901', 'comercial'),
 (3, '11965432109', 'celular'),
-(3, '1156789012',  'residencial'),
+(3, '1156789012', 'residencial'),
 (4, '11954321098', 'celular'),
-(4, '1167890123',  'comercial'),
+(4, '1167890123', 'comercial'),
 (5, '11943210987', 'celular'),
-(5, '1178901234',  'residencial'),
+(5, '1178901234', 'residencial'),
 (6, '11932104567', 'celular'),
-(6, '1132104567',  'comercial'),
+(6, '1132104567', 'comercial'),
 (7, '11999887766', 'celular'),
-(7, '1133445566',  'residencial'),
+(7, '1133445566', 'residencial'),
 (8, '11988776655', 'celular'),
-(8, '1133556677',  'residencial'),
+(8, '1133556677', 'residencial'),
 (9, '11977665544', 'celular'),
-(9, '1133667788',  'residencial'),
+(9, '1133667788', 'residencial'),
 (10, '11966554433', 'celular'),
-(10, '1133778899',  'residencial'),
+(10, '1133778899', 'residencial'),
 (11, '11955443322', 'celular'),
-(11, '1133889900',  'residencial');
+(11, '1133889900', 'residencial');
 
--- Composteiras atualizadas (sem tamanho, com descricao e modelo_sensor)
-insert into composteiras (produtor_id, modelo, descricao, capacidade_kg, modelo_sensor)
+
+insert into composteira
+(produtor_id, modelo, descricao, capacidade_kg)
 values
-(1, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
-(1, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
-(1, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
-(1, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
-(1, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
+(1, 'eco100', 'Composteira residencial média', 100),
+(1, 'eco50', 'Composteira residencial pequena', 50),
+(1, 'bio30', 'Modelo compacto para apartamentos', 30),
+(1, 'max200', 'Composteira de alta capacidade', 200),
+(1, 'mini20', 'Mini composteira para teste', 20),
 
-(2, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
-(2, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
-(2, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
-(2, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
-(2, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
+(2, 'eco100', 'Composteira residencial média', 100),
+(2, 'eco50', 'Composteira residencial pequena', 50),
+(2, 'bio30', 'Modelo compacto para apartamentos', 30),
+(2, 'max200', 'Composteira de alta capacidade', 200),
+(2, 'mini20', 'Mini composteira para teste', 20),
 
-(3, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
-(3, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
-(3, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
-(3, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
-(3, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
+(3, 'eco100', 'Composteira residencial média', 100),
+(3, 'eco50', 'Composteira residencial pequena', 50),
+(3, 'bio30', 'Modelo compacto para apartamentos', 30),
+(3, 'max200', 'Composteira de alta capacidade', 200),
+(3, 'mini20', 'Mini composteira para teste', 20),
 
-(4, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
-(4, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
-(4, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
-(4, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
-(4, 'mini20', 'Mini composteira para teste', 20, 'DHT11'),
+(4, 'eco100', 'Composteira residencial média', 100),
+(4, 'eco50', 'Composteira residencial pequena', 50),
+(4, 'bio30', 'Modelo compacto para apartamentos', 30),
+(4, 'max200', 'Composteira de alta capacidade', 200),
+(4, 'mini20', 'Mini composteira para teste', 20),
 
-(5, 'eco100', 'Composteira residencial média', 100, 'DHT11'),
-(5, 'eco50',  'Composteira residencial pequena', 50, 'DHT11'),
-(5, 'bio30',  'Modelo compacto para apartamentos', 30, 'DHT11'),
-(5, 'max200', 'Composteira de alta capacidade', 200, 'DHT11'),
-(5, 'mini20', 'Mini composteira para teste', 20, 'DHT11');
+(5, 'eco100', 'Composteira residencial média', 100),
+(5, 'eco50', 'Composteira residencial pequena', 50),
+(5, 'bio30', 'Modelo compacto para apartamentos', 30),
+(5, 'max200', 'Composteira de alta capacidade', 200),
+(5, 'mini20', 'Mini composteira para teste', 20);
 
--- Detecções agora ligam direto na composteira_id
-insert into deteccoes (composteira_id, temperatura, umidade) values
+
+insert into sensor
+(composteira_id, modelo_sensor)
+values
+(1, 'DHT11'),
+(2, 'DHT11'),
+(3, 'DHT11'),
+(4, 'DHT11'),
+(5, 'DHT11'),
+(6, 'DHT11'),
+(7, 'DHT11'),
+(8, 'DHT11'),
+(9, 'DHT11'),
+(10, 'DHT11'),
+(11, 'DHT11'),
+(12, 'DHT11'),
+(13, 'DHT11'),
+(14, 'DHT11'),
+(15, 'DHT11'),
+(16, 'DHT11'),
+(17, 'DHT11'),
+(18, 'DHT11'),
+(19, 'DHT11'),
+(20, 'DHT11'),
+(21, 'DHT11'),
+(22, 'DHT11'),
+(23, 'DHT11'),
+(24, 'DHT11'),
+(25, 'DHT11');
+
+insert into deteccao
+(sensor_id, temperatura, umidade)
+values
 (1,22,75),(2,23,78),(3,21,80),(4,24,72),(5,20,70),
 (6,22,82),(7,23,76),(8,21,79),(9,24,74),(10,22,73),
 (11,23,77),(12,22,76),(13,24,78),(14,21,75),(15,23,74),
@@ -145,7 +207,9 @@ insert into deteccoes (composteira_id, temperatura, umidade) values
 (11,24,76),(12,23,75),(13,25,77),(14,22,74),(15,24,73),
 (16,23,78),(17,24,79),(18,22,76),(19,25,75),(20,23,74);
 
-insert into alertas (deteccao_id, prioridade, tipo) values
+insert into alerta
+(deteccao_id, prioridade, tipo)
+values
 (21,0,'alta temperatura'),
 (22,0,'baixa temperatura'),
 (23,0,'baixa umidade'),
