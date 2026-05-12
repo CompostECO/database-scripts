@@ -107,7 +107,8 @@ index idx_deteccao (deteccao_id),
   constraint chk_tipo_alerta check (tipo in (
     'baixa umidade','baixa temperatura','alta umidade',
     'alta temperatura','baixa umidade e temperatura',
-    'alta umidade e temperatura'
+    'alta umidade e temperatura', 'baixa umidade e alta temperatura',
+    'alta umidade e baixa temperatura'
   ))
 );
 
