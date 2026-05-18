@@ -208,28 +208,28 @@ values
 (16,23,78),(17,24,79),(18,22,76),(19,25,75),(20,23,74);
 
 insert into alerta
-(deteccao_id, prioridade, tipo)
+(composteira_id, prioridade, tipo)
 values
-(21,0,'alta temperatura'),
-(22,0,'baixa temperatura'),
-(23,0,'baixa umidade'),
-(24,0,'alta umidade'),
+(1,0,'alta temperatura'),
+(2,0,'baixa temperatura'),
+(3,0,'baixa umidade'),
+(1,0,'alta umidade'),
 
-(25,1,'baixa umidade'),
-(26,1,'alta temperatura'),
-(27,1,'baixa temperatura'),
-(28,1,'alta umidade'),
+(4,1,'baixa umidade'),
+(5,1,'alta temperatura'),
+(1,1,'baixa temperatura'),
+(2,1,'alta umidade'),
 
-(41,2,'alta temperatura'),
-(42,2,'baixa temperatura'),
-(43,2,'baixa umidade'),
-(44,2,'alta umidade'),
-(45,2,'baixa umidade e temperatura'),
-(46,2,'alta umidade e temperatura'),
+(4,2,'alta temperatura'),
+(6,2,'baixa temperatura'),
+(4,2,'baixa umidade'),
+(2,2,'alta umidade'),
+(7,2,'baixa umidade e temperatura'),
+(6,2,'alta umidade e temperatura'),
 
-(61,3,'alta temperatura'),
-(62,3,'baixa temperatura'),
-(63,3,'baixa umidade'),
-(64,3,'alta umidade'),
-(65,3,'baixa umidade e temperatura'),
-(66,3,'alta umidade e temperatura');
+(1,3,'alta temperatura'),
+(3,3,'baixa temperatura'),
+(5,3,'baixa umidade'),
+(2,3,'alta umidade'),
+(3,3,'baixa umidade e temperatura'),
+(1,3,'alta umidade e temperatura');
