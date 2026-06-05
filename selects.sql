@@ -104,3 +104,36 @@ select
 from deteccoes d
 where d.composteira_id = 1
 order by d.criado_em asc;
+
+USE composteco;
+SELECT * FROM usuario;
+
+-- view que junta os dados de deteccao a uma composteira
+CREATE OR REPLACE VIEW vw_grafico
+AS
+SELECT us.id AS id_usuario, pro.nome_fantasia AS trabalha_em, com.id AS id_composteira,com.modelo AS modelo_composteira, de.temperatura AS registro_temperatura, de.umidade AS registro_umidade ,de.criado_em AS data_registro FROM usuario AS us
+JOIN produtor AS pro ON us.produtor_id = pro.id
+JOIN composteira AS com ON com.produtor_id = pro.id
+JOIN sensor AS se ON se.composteira_id = com.id 
+JOIN deteccao AS de ON de.sensor_id = se.id;
+
+-- view que pega a média de deteccoes feitas e uma hora
+CREATE OR REPLACE VIEW vw_media_por_hora
+AS
+SELECT id_usuario, id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, HOUR(data_registro) AS hora_registro FROM vw_grafico
+WHERE DATE(data_registro) = DATE(NOW())
+GROUP BY id_usuario,id_composteira, HOUR(data_registro)
+ORDER BY id_usuario, hora_registro, temperatura, umidade ASC;
+
+-- view que pega a ultima 4 horas de alerta
+CREATE OR REPLACE VIEW vw_ultimos_alertas
+AS
+SELECT us.id AS id_usuario, com.id AS composteira_id, al.id AS alerta_id, al.tipo AS tipo_alerta, al.prioridade AS prioridade_alerta, al.enviado_em AS data_alerta FROM usuario AS us
+JOIN produtor AS pro ON us.produtor_id = pro.id
+JOIN composteira AS com ON com.produtor_id = pro.id
+JOIN alerta AS al ON al.composteira_id = com.id
+ORDER BY alerta_id ASC;
+
+
+
+
