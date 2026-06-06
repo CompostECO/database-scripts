@@ -167,3 +167,18 @@ JOIN produtor AS pro ON us.produtor_id = pro.id
 JOIN composteira AS com ON com.produtor_id = pro.id
 JOIN alerta AS al ON al.composteira_id = com.id
 ORDER BY alerta_id ASC;
+
+
+CREATE OR REPLACE VIEW vw_media_por_dia
+AS
+SELECT id_usuario, id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, DATE(data_registro) AS hora_registro FROM vw_grafico
+WHERE DATE(data_registro) > DATE_SUB(NOW(), INTERVAL 7 DAY)
+GROUP BY id_usuario,id_composteira, DATE(data_registro)
+ORDER BY hora_registro ASC;
+
+CREATE OR REPLACE VIEW vw_media_por_mes
+AS
+SELECT id_usuario, id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, MONTH(data_registro) AS hora_registro FROM vw_grafico
+WHERE DATE(data_registro) > DATE_SUB(NOW(), INTERVAL 12 MONTH)
+GROUP BY id_usuario,id_composteira, MONTH(data_registro)
+ORDER BY hora_registro ASC;
