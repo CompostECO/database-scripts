@@ -168,17 +168,31 @@ JOIN composteira AS com ON com.produtor_id = pro.id
 JOIN alerta AS al ON al.composteira_id = com.id
 ORDER BY alerta_id ASC;
 
+-- views para os gráficos da página de dashboard
+CREATE OR REPLACE VIEW vw_grafico2
+AS
+SELECT  pro.nome_fantasia AS trabalha_em, com.id AS id_composteira,com.modelo AS modelo_composteira, de.temperatura AS registro_temperatura, de.umidade AS registro_umidade ,de.criado_em AS data_registro FROM produtor AS pro 
+JOIN composteira AS com ON com.produtor_id = pro.id
+JOIN sensor AS se ON se.composteira_id = com.id 
+JOIN deteccao AS de ON de.sensor_id = se.id;
 
 CREATE OR REPLACE VIEW vw_media_por_dia
 AS
-SELECT id_usuario, id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, DATE(data_registro) AS hora_registro FROM vw_grafico
+SELECT id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, DATE(data_registro) AS hora_registro FROM vw_grafico2
 WHERE DATE(data_registro) > DATE_SUB(NOW(), INTERVAL 7 DAY)
-GROUP BY id_usuario,id_composteira, DATE(data_registro)
+GROUP BY id_composteira, DATE(data_registro)
 ORDER BY hora_registro ASC;
 
 CREATE OR REPLACE VIEW vw_media_por_mes
 AS
-SELECT id_usuario, id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, MONTH(data_registro) AS hora_registro FROM vw_grafico
+SELECT  id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, MONTH(data_registro) AS hora_registro FROM vw_grafico2
 WHERE DATE(data_registro) > DATE_SUB(NOW(), INTERVAL 12 MONTH)
-GROUP BY id_usuario,id_composteira, MONTH(data_registro)
+GROUP BY id_composteira, MONTH(data_registro)
+ORDER BY hora_registro ASC;
+
+CREATE OR REPLACE VIEW vw_media_por_hora_composteira
+AS
+SELECT  id_composteira, modelo_composteira AS nome, TRUNCATE(AVG(registro_temperatura), 0) AS temperatura, TRUNCATE(AVG(registro_umidade), 0) AS umidade, HOUR(data_registro) AS hora_registro FROM vw_grafico2
+WHERE DATE(data_registro) = DATE(NOW())
+GROUP BY id_composteira, HOUR(data_registro)
 ORDER BY hora_registro ASC;
